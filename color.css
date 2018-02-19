@@ -1,0 +1,29 @@
+.header{
+	background-color: #f18973;
+	font-family: Geneva,Tahoma,Verdana,sans-serif;
+    text-align: center;
+    overflow-y: scroll;
+    color: #282d33;
+    letter-spacing: 1px;
+ 
+}
+.header.h1{
+	text-align:center;
+
+}
+.translate{
+	height: 100%;
+}
+.btn{
+     align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 2px 6px 3px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+    border-image: initial;
+}
