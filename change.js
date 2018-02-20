@@ -42,21 +42,21 @@ function loadOut(){
 
 }
 
-function clear(){
-	
-
+function reset(){
 	let inputClear=document.getElementById('in');
 	let outputClear= document.getElementById('output');
+	let textAreaClear = document.getElementById('mes');
 	
-  if(inputClear.value != "" ||outputClear.value != "")
+  if(inputClear.value != '' ||outputClear.value != '')
   {
-	  document.getElementById('in').value="";
-	  document.getElementById('output').value="";
-    inputClear.value="";
-    outputClear.value="";
-    result.value ="";
-    upp.value="";
-    arrayletter.value ="";
+	  document.getElementById('in').value='';
+	  document.getElementById('output').value='';
+    inputClear.value='';
+    outputClear.value='';
+    textAreaClear.value='';
+    result.value ='';
+    upp.value='';
+    arrayletter.value ='';
    }
 
   
@@ -64,19 +64,21 @@ function clear(){
 
 function morse(){
 	
-	
-	
  let morse_str = conv(document.getElementById('in').value);
  play_sound(morse_str);
 }
 
 function conv(word_str){
+
 	let strs = word_str.toUpperCase();
 	let item;
 	let rtn = '';
 	let j;
 	 for(j=0;j<strs.length;j++)
      {
+	   /*if(typeof strs[j]==='undefined'){
+		   delete strs[j];
+	   }*/
        rtn += strs[j];
        item += soundCheck(rtn[j].toUpperCase())+"000";
      }
@@ -254,8 +256,15 @@ function decode(item){
     sound="11101110111011101";
     break;
     
+    case "undefined":
+    code="";
+    sound="";
+    break;
+    
     default:
     code="";
+    sound="";
+    
     break;
   }
   if(code.includes([code],'undefined')){
