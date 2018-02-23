@@ -1,7 +1,7 @@
 /**
  * Author Chinatsu Kawakami
  * Created DATE: 2018-Feb-18
- * Modified date: 2018-Feb-19
+ * Modified date: 2018-Feb-23
  * Description: This is website to translate alphabet into Morse Code with sound.
  */
 
@@ -13,7 +13,7 @@ let upp =[];
 let arrayletter = [];
 let code;
 let sound;
-
+let i;
 let audio = new Audio();
 audio.src ="sound/Test Tone-1kHz-1.mp3";
 function loadOut(){
@@ -21,24 +21,25 @@ function loadOut(){
 	let inputId=document.getElementById('in');
 	let outputId= document.getElementById('output');
 
-	if(outputId.value != "Code will be Here")
+	/*if(outputId.value != "Code will be Here")
 	{
 	   outputId.value= "";
 	}
+	*/
 	
-
     arrayletter += inputId.value;
+      
     
-   
-    let i;
-	
-     
      for(i=0;i<arrayletter.length;i++)
      {
        upp += arrayletter[i];
        result += decode(upp[i].toUpperCase());
      }
-    outputId.value=result;
+     
+     /*if(result.includes("undefined")){
+    	 result.slice(1);
+     }*/
+    outputId.value=result.slice(9);
 
 }
 
@@ -47,17 +48,18 @@ function reset(){
 	let outputClear= document.getElementById('output');
 	let textAreaClear = document.getElementById('mes');
 	
-  if(inputClear.value != '' ||outputClear.value != '')
-  {
-	  document.getElementById('in').value='';
-	  document.getElementById('output').value='';
+	
+	  result.splice(0);
+	    this.upp.splice(0);
+	    this.arrayletter.splice(0);
+	 
+	   
+    document.getElementById('in').value='';
+	document.getElementById('output').value='';
     inputClear.value='';
     outputClear.value='';
     textAreaClear.value='';
-    result.value ='';
-    upp.value='';
-    arrayletter.value ='';
-   }
+  
 
   
 }//end of clear function
@@ -76,14 +78,14 @@ function conv(word_str){
 	let j;
 	 for(j=0;j<strs.length;j++)
      {
-	   /*if(typeof strs[j]==='undefined'){
+	   if(typeof strs[j] === 'undefined'){
 		   delete strs[j];
-	   }*/
+	   }
        rtn += strs[j];
-       item += soundCheck(rtn[j].toUpperCase())+"000";
+       item += soundCheck(rtn[j].toUpperCase());
      }
 	 
-	 return item;
+	 return item.slice(9);
 	}
 
 function play_sound(morse){
@@ -113,157 +115,157 @@ function decode(item){
   switch(item){
   case "A":
     code= ".-";
-    sound="10111";
+
     break;
   case "B":
     code="-...";
-    sound="111010101";
+
     break;
   case "C":
     code="-.-.";
-    sound="11101011101";
+ 
     break;
   case "D":
     code= "-..";
-    sound="1110101";
+
     break;
   case "E":
     code=".";
-    sound="1";
+   
     break;
   case "F":
     code= "..-.";
-    sound="101011101";
+
     break;
   case "G":
     code="--.";
-    sound="111011101";
+
     break;
   case "H":
     code="....";
-    sound="1010101";
+  
     break;
   case "I":
     code="..";
-    sound="101";
+ 
     break;
   case "J":
     code=".---";
-    sound="1011101110111";
+
     break;
   case "K":
     code="-.-";
-    sound="111010111";
+
     break;
   case "L":
     code=".-..";
-    sound="101110101";
+ 
     break;
    case "M":
     code="--";
-    sound="1110111";
+   
     break;
    case "N":
     code="-.";
-    sound="11101";
+
     break;
    case "O":
     code="---";
-    sound="11101110111";
+
     break;
    case "P":
     code=".--.";
-    sound="10111011101";
+ 
     break;
    case "Q":
     code="--.-";
-    sound="1110111010111";
+
     break;
    case "R":
     code=".-.";
-    sound="1011101";
+
     break;
    case "S":
     code="...";
-    sound="10101";
+
     break;
    case "T":
     code="-";
-    sound="111";
+ 
     break;
     case "U":
     code="..-";
-    sound="1010111";
+
     break;
     case "V":
     code="...-";
-    sound="101010111";
+
     break;
     case "W":
     code=".--";
-    sound="101110111";
+ 
     break;
     case "X":
     code="-..-";
-    sound="11101010111";
+  
     break;
     case "Y":
     code="-.--";
-    sound="1110101110111";
+
     break;
     case "Z":
     code="--..";
-    sound="11101110101";
+
     break;
     case "0":
     code="-----";
-    sound="1110111011101110111";
+  
     break;
     case "1":
     code=".----";
-    sound="10111011101110111";
+
     break;
     case "2":
     code="..---";
-    sound="101011101110111";
+
     break;
     case "3":
     code="...--";
-    sound="1110111011101110111";
+
     break;
     case "4":
     code = "....-";
-    sound="10101010111";
+
     break;
     case "5":
     code = ".....";
-    sound="101010101";
+
     break;
     case "6":
     code= "-....";
-    sound="11101010101";
+
     break;
     case "7":
     code="--...";
-    sound="1110111010101";
+
     break;
     case "8":
     code="---..";
-    sound="111011101110101";
+ 
     break;
     case "9":
     code="----.";
-    sound="11101110111011101";
+   
     break;
     
     case "undefined":
     code="";
-    sound="";
+  
     break;
     
     default:
     code="";
-    sound="";
+ 
     
     break;
   }
@@ -279,152 +281,151 @@ function soundCheck(item){
 	  
 	  switch(item){
 	  case "A":
-	    code= ".-";
+	  
 	    sound="10111";
 	    break;
 	  case "B":
-	    code="-...";
+	
 	    sound="111010101";
 	    break;
 	  case "C":
-	    code="-.-.";
+	  
 	    sound="11101011101";
 	    break;
 	  case "D":
-	    code= "-..";
+	  
 	    sound="1110101";
 	    break;
 	  case "E":
-	    code=".";
+	    
 	    sound="1";
 	    break;
 	  case "F":
-	    code= "..-.";
+	   
 	    sound="101011101";
 	    break;
 	  case "G":
-	    code="--.";
+	 
 	    sound="111011101";
 	    break;
 	  case "H":
-	    code="....";
+	 
 	    sound="1010101";
 	    break;
 	  case "I":
-	    code="..";
+	  
 	    sound="101";
 	    break;
 	  case "J":
-	    code=".---";
+	    
 	    sound="1011101110111";
 	    break;
 	  case "K":
-	    code="-.-";
+	  
 	    sound="111010111";
 	    break;
 	  case "L":
-	    code=".-..";
+	 
 	    sound="101110101";
 	    break;
 	   case "M":
-	    code="--";
+	
 	    sound="1110111";
 	    break;
 	   case "N":
-	    code="-.";
+	 
 	    sound="11101";
 	    break;
 	   case "O":
-	    code="---";
+	   
 	    sound="11101110111";
 	    break;
 	   case "P":
-	    code=".--.";
+	
 	    sound="10111011101";
 	    break;
 	   case "Q":
-	    code="--.-";
 	    sound="1110111010111";
 	    break;
 	   case "R":
-	    code=".-.";
+	
 	    sound="1011101";
 	    break;
 	   case "S":
-	    code="...";
+	   
 	    sound="10101";
 	    break;
 	   case "T":
-	    code="-";
+	   
 	    sound="111";
 	    break;
 	    case "U":
-	    code="..-";
+	   
 	    sound="1010111";
 	    break;
 	    case "V":
-	    code="...-";
+	   
 	    sound="101010111";
 	    break;
 	    case "W":
-	    code=".--";
+	  
 	    sound="101110111";
 	    break;
 	    case "X":
-	    code="-..-";
+	  
 	    sound="11101010111";
 	    break;
 	    case "Y":
-	    code="-.--";
+	  
 	    sound="1110101110111";
 	    break;
 	    case "Z":
-	    code="--..";
+	   
 	    sound="11101110101";
 	    break;
 	    case "0":
-	    code="-----";
+	  
 	    sound="1110111011101110111";
 	    break;
 	    case "1":
-	    code=".----";
+	   
 	    sound="10111011101110111";
 	    break;
 	    case "2":
-	    code="..---";
+	  
 	    sound="101011101110111";
 	    break;
 	    case "3":
-	    code="...--";
+	   
 	    sound="1110111011101110111";
 	    break;
 	    case "4":
-	    code = "....-";
+	   
 	    sound="10101010111";
 	    break;
 	    case "5":
-	    code = ".....";
+	
 	    sound="101010101";
 	    break;
 	    case "6":
-	    code= "-....";
+	
 	    sound="11101010101";
 	    break;
 	    case "7":
-	    code="--...";
+	
 	    sound="1110111010101";
 	    break;
 	    case "8":
-	    code="---..";
+	  
 	    sound="111011101110101";
 	    break;
 	    case "9":
-	    code="----.";
+	
 	    sound="11101110111011101";
 	    break;
 	    
 	    default:
-	    code="";
+	    sound="";
 	    break;
 	  }
 
