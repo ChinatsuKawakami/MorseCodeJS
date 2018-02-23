@@ -8,38 +8,30 @@
 let oscillator;
 let gain; 
 let dot;
-let result;
-let upp =[];
-let arrayletter = [];
+
 let code;
 let sound;
 let i;
 let audio = new Audio();
 audio.src ="sound/Test Tone-1kHz-1.mp3";
 function loadOut(){
-	
+	let result;
+	let upp =[];
+	let arrayletter = [];
 	let inputId=document.getElementById('in');
 	let outputId= document.getElementById('output');
 
-	/*if(outputId.value != "Code will be Here")
-	{
-	   outputId.value= "";
-	}
-	*/
 	
-    arrayletter += inputId.value;
-      
+    arrayletter += inputId.value;    
     
      for(i=0;i<arrayletter.length;i++)
      {
        upp += arrayletter[i];
        result += decode(upp[i].toUpperCase());
      }
-     
-     /*if(result.includes("undefined")){
-    	 result.slice(1);
-     }*/
+ 
     outputId.value=result.slice(9);
+    
 
 }
 
@@ -47,17 +39,13 @@ function reset(){
 	let inputClear=document.getElementById('in');
 	let outputClear= document.getElementById('output');
 	let textAreaClear = document.getElementById('mes');
+   
 	
-	
-	  result.splice(0);
-	    this.upp.splice(0);
-	    this.arrayletter.splice(0);
-	 
-	   
-    document.getElementById('in').value='';
-	document.getElementById('output').value='';
+    
+
     inputClear.value='';
     outputClear.value='';
+
     textAreaClear.value='';
   
 
